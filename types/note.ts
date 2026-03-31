@@ -12,3 +12,11 @@ export interface NoteData {
   content: string;
   tag: string;
 }
+
+export type CreateNote = {
+  title: string;
+  content: string;
+  tag: string;
+};
+
+export type Tags = "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";

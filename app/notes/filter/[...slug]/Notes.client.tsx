@@ -9,9 +9,8 @@ import { getNotes } from "@/lib/api";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
-import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
 import css from "./App.module.css";
+import Link from "next/link";
 
 interface NotesClientProps {
   tag?: string[];
@@ -20,7 +19,6 @@ interface NotesClientProps {
 export default function NotesClient({ tag }: NotesClientProps) {
   const [page, setPage] = useState<number>(1);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const perPage = 12;
   const tagValue = tag?.[0];
   const currentTag = tagValue === "all" ? undefined : tagValue;
@@ -61,9 +59,9 @@ export default function NotesClient({ tag }: NotesClientProps) {
               onPageChange={setPage}
             />
           )}
-          <button className={css.button} onClick={() => setIsOpen(true)}>
+          <Link href="/notes/action/create" className="btn-create">
             Create note +
-          </button>
+          </Link>
         </header>
 
         {isLoading ? (
@@ -74,11 +72,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
           <NoteList notes={notes} />
         )}
       </div>
-      {isOpen && (
-        <Modal onClose={() => setIsOpen(false)}>
-          <NoteForm onClick={() => setIsOpen(false)} />
-        </Modal>
-      )}
     </>
   );
 }

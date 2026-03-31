@@ -1,5 +1,21 @@
-"use client";
+import { Metadata } from "next";
 import css from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "Page Not Found | NoteHub",
+  description: "The page you are looking for does not exist.",
+  openGraph: {
+    title: "404 - Page Not Found",
+    description: "Sorry, we couldn’t find the page you were looking for.",
+    url: "https://08-zustang-one-iota.vercel.app/not-found",
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        alt: "Not Found Image",
+      },
+    ],
+  },
+};
 
 const NotFound = () => {
   return (
